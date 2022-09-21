@@ -1,15 +1,11 @@
 import './sass/index.scss';
 
-
-import NewsApiService from './js/api-service';
+import NewsApiService from './js/appi-service';
 import renderCard from './js/renderCard';
+
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-
 import SimpleLightbox from 'simplelightbox';
-// Дополнительный импорт стилей
 import 'simplelightbox/dist/simple-lightbox.min.css';
-
-//инициализация 
 
 const refs = {
     searchForm: document.querySelector('.search-form'),
@@ -26,7 +22,6 @@ const refs = {
     e.preventDefault();
   
     newsApiService.query = e.currentTarget.elements.searchQuery.value.trim();
-  
     newsApiService.resetPage();
   
     if (newsApiService.query === '') {
@@ -36,9 +31,7 @@ const refs = {
      return;
     }
   
-    newsApiService
-      .fetchGalleryCards()
-  
+    newsApiService.fetchGalleryCards()   
       .then(data => {
         refs.galleryContainer.innerHTML = '';
         refs.loadMoreBtn.classList.remove('is-hidden');
@@ -60,9 +53,12 @@ const refs = {
     newsApiService.fetchGalleryCards().then(onScrollmake);
   }
   
-  function onRenderGallery(data) {
-    refs.galleryContainer.insertAdjacentHTML('beforeend', galleryCards(data.hits));
+
+  function  onRenderGallery(data) {        
+    refs.galleryContainer.insertAdjacentHTML('beforeend',renderCard(data));
   
-    onSliderMake();
   }
   
+  function onScrollmake(data) {
+
+  }
