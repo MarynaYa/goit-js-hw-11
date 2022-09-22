@@ -1,8 +1,8 @@
 import './sass/index.scss';
 
-import NewsApiService from './js/appi-service';
+import NewsApiService from './js/api-service';
 import renderCard from './js/renderCard';
-
+//import axios from 'axios';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
@@ -12,12 +12,13 @@ const refs = {
     galleryContainer: document.querySelector('.gallery'),
     loadMoreBtn: document.querySelector('.load-more'),
   };
-  
+
   const newsApiService = new NewsApiService();
-  
+    
   refs.searchForm.addEventListener('submit', onSearch);
   refs.loadMoreBtn.addEventListener('click', onLoadMore);
-  
+
+  //////---- FUNCTION ----////
   function onSearch(e) {
     e.preventDefault();
   
@@ -54,8 +55,9 @@ const refs = {
   }
   
 
-  function  onRenderGallery(data) {        
-    refs.galleryContainer.insertAdjacentHTML('beforeend',renderCard(data));
+  function  onRenderGallery(data) {     
+    const markup = data.hits.map(data => renderCard(data)).join('');
+         refs.galleryContainer.insertAdjacentHTML('beforeend', markup);
   
   }
   

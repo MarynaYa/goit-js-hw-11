@@ -1,4 +1,5 @@
 export default function renderCard(data) {
+
   return `<div class="photo-card">
   <a href="${data.largeImageURL}">
     <img class="photo-img" src="${data.webformatURL}" alt="${data.tags}" loading="lazy" />
@@ -23,5 +24,3 @@ export default function renderCard(data) {
   </div>
   </div>`
 }
-  
-  
