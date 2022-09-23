@@ -83,28 +83,24 @@ const refs = {
   }
 }
 // функция бесконечного скрола 
-    // вешаем слушателя на вьюпорт
-    window.addEventListener('scroll', trackScroll);
+    // вешаем слушателя на вьюпор
 
-    function trackScroll() {
+  
     const onEntry = entries => {
       entries.forEach(entry => {
-        if(entry.isIntersecting) {
+        if(entry.isIntersecting && newsApiService.query != '') {
         console.log('GO-GO');
        
         newsApiService.fetchGalleryCards()
         .then(data => {
-          refs.galleryContainer.innerHTML = '';
-         // if (newsApiService.query === '' && !data.hits.length) {                       
-           // return;
-         // }
+          refs.galleryContainer.innerHTML = '';      
           onRenderGallery(data);       
           lightbox.refresh();
-         // newsApiService.incrementPage();
+         //newsApiService.incrementPage();
         })
         }
       })
-    }
+    
     const options = {
       rootMargin: '150px',
     };
