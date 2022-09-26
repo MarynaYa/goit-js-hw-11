@@ -4,13 +4,10 @@ export default class NewsApiService {
     constructor() {
       this.searchQuery = '';
       this.page = 1;  
-      this.PER_PAGE = 40;
-      this.totalHits = null;
-      this.totalPages = null;
-      this.endOfHits = false;
+      this.PER_PAGE = 40;  
       
     }
-    async fetchGalleryCards() {
+    async fetchGallery() {
       const axiosOptions = {
         method: 'get',
         url: 'https://pixabay.com/api/',
@@ -57,5 +54,3 @@ export default class NewsApiService {
       this.searchQuery = newQuery;
     } 
   }
-
-  

@@ -9,3 +9,5 @@ let lightbox = new SimpleLightbox('.photo-card a', {
 });
 
 export { lightbox };
+
+
