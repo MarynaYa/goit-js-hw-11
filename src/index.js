@@ -66,7 +66,7 @@ const refs = {
         refs.loadMoreBtn.classList.remove('is-hidden');
     }
     // Если пользователь дошел до конца коллекции, пряч кнопку и выводи уведомление с текстом:
-    if (hits.length >= total) {
+    if (isShown >= total) {
         Notify.info(
             'We re sorry, but you have reached the end of search results.'
         );
