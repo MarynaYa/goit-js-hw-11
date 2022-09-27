@@ -19,6 +19,15 @@ const refs = {
   refs.searchForm.addEventListener('submit', onSearch);
   refs.loadMoreBtn.addEventListener('click', onLoadMore);
 
+// Бесконечного скролла 
+const options = {
+  rootMargin: '50px',
+  root: null,
+  threshold: 0.3
+};
+const observer = new IntersectionObserver(onLoadMore, options);
+//observer.observe(refs.loadMoreBtn);  
+
 
       //////---- FUNCTION ----////
    function onSearch(e) {
@@ -34,7 +43,9 @@ const refs = {
      }       
     
      isShown = 0;
-     fetchGallery();          
+    fetchGallery();  
+    //const observer = new IntersectionObserver(onLoadMore, options);
+     observer.observe(refs.loadMoreBtn);     
    }
    
    function onLoadMore() {      
@@ -115,17 +126,3 @@ const refs = {
 }   
 
 
-  // ф-ция скролла для дальнейшего открытия картинок *более 40 шт)
-  function onScrollmake(elements) {
-   onRenderGallery(elements); 
-   lightbox.refresh(); 
-   const { height: cardHeight } = document
-     .querySelector(".gallery")
-     .firstElementChild.getBoundingClientRect();   
-   window.scrollBy({
-     top: cardHeight * 2,
-     behavior: "smooth",
-   });   
-  
-  }
-  
