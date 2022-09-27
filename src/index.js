@@ -1,11 +1,10 @@
 import './sass/index.scss';
 
 import NewsApiService from './js/api-service';
-//import renderCard from './js/renderCard';
+import renderCard from './js/renderCard';
 import { lightbox } from './js/onslidermake';
 //import axios from 'axios';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-
 
 
 const refs = {
@@ -44,8 +43,10 @@ const observer = new IntersectionObserver(onLoadMore, options);
     
      isShown = 0;
     fetchGallery();  
-    //const observer = new IntersectionObserver(onLoadMore, options);
-     observer.observe(refs.loadMoreBtn);     
+    onRenderGallery(hits);
+    
+  ///// если нужен бесконечній скролл добавляем ст.48
+     //observer.observe(refs.loadMoreBtn);     
    }
    
    function onLoadMore() {      
@@ -124,5 +125,4 @@ const observer = new IntersectionObserver(onLoadMore, options);
        refs.galleryContainer.insertAdjacentHTML('beforeend', markup);
        lightbox.refresh();      
 }   
-
 
